@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2708E85D1930FC3200D143BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E85C1930FC3200D143BA /* Foundation.framework */; };
+		2708E85F1930FC3200D143BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E85E1930FC3200D143BA /* CoreGraphics.framework */; };
+		2708E8611930FC3200D143BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E8601930FC3200D143BA /* UIKit.framework */; };
+		2708E8671930FC3500D143BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2708E8651930FC3500D143BA /* InfoPlist.strings */; };
+		2708E8691930FC3500D143BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E8681930FC3500D143BA /* main.m */; };
+		2708E86D1930FC3700D143BA /* CTZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E86C1930FC3700D143BA /* CTZAppDelegate.m */; };
+		2708E8701930FC3900D143BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2708E86E1930FC3900D143BA /* Main.storyboard */; };
+		2708E8731930FC3900D143BA /* CTZMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E8721930FC3900D143BA /* CTZMasterViewController.m */; };
+		2708E8761930FC3900D143BA /* CTZDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E8751930FC3900D143BA /* CTZDetailViewController.m */; };
+		2708E8781930FC3A00D143BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2708E8771930FC3A00D143BA /* Images.xcassets */; };
+		2708E87F1930FC3B00D143BA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E87E1930FC3B00D143BA /* XCTest.framework */; };
+		2708E8801930FC3B00D143BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E85C1930FC3200D143BA /* Foundation.framework */; };
+		2708E8811930FC3B00D143BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2708E8601930FC3200D143BA /* UIKit.framework */; };
+		2708E8891930FC3C00D143BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2708E8871930FC3C00D143BA /* InfoPlist.strings */; };
+		2708E88B1930FC3C00D143BA /* Cultiz_readerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E88A1930FC3C00D143BA /* Cultiz_readerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2708E8821930FC3B00D143BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2708E8511930FC2D00D143BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2708E8581930FC3100D143BA;
+			remoteInfo = "Cultiz reader";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2708E8591930FC3200D143BA /* Cultiz reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cultiz reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2708E85C1930FC3200D143BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2708E85E1930FC3200D143BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2708E8601930FC3200D143BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2708E8641930FC3400D143BA /* Cultiz reader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cultiz reader-Info.plist"; sourceTree = "<group>"; };
+		2708E8661930FC3500D143BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2708E8681930FC3500D143BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2708E86A1930FC3600D143BA /* Cultiz reader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cultiz reader-Prefix.pch"; sourceTree = "<group>"; };
+		2708E86B1930FC3600D143BA /* CTZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTZAppDelegate.h; sourceTree = "<group>"; };
+		2708E86C1930FC3700D143BA /* CTZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTZAppDelegate.m; sourceTree = "<group>"; };
+		2708E86F1930FC3900D143BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2708E8711930FC3900D143BA /* CTZMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTZMasterViewController.h; sourceTree = "<group>"; };
+		2708E8721930FC3900D143BA /* CTZMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTZMasterViewController.m; sourceTree = "<group>"; };
+		2708E8741930FC3900D143BA /* CTZDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTZDetailViewController.h; sourceTree = "<group>"; };
+		2708E8751930FC3900D143BA /* CTZDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTZDetailViewController.m; sourceTree = "<group>"; };
+		2708E8771930FC3A00D143BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2708E87D1930FC3B00D143BA /* Cultiz readerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cultiz readerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2708E87E1930FC3B00D143BA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2708E8861930FC3C00D143BA /* Cultiz readerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cultiz readerTests-Info.plist"; sourceTree = "<group>"; };
+		2708E8881930FC3C00D143BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2708E88A1930FC3C00D143BA /* Cultiz_readerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cultiz_readerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2708E8561930FC3100D143BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E85F1930FC3200D143BA /* CoreGraphics.framework in Frameworks */,
+				2708E8611930FC3200D143BA /* UIKit.framework in Frameworks */,
+				2708E85D1930FC3200D143BA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2708E87A1930FC3B00D143BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E87F1930FC3B00D143BA /* XCTest.framework in Frameworks */,
+				2708E8811930FC3B00D143BA /* UIKit.framework in Frameworks */,
+				2708E8801930FC3B00D143BA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2708E8501930FC2A00D143BA = {
+			isa = PBXGroup;
+			children = (
+				2708E8621930FC3300D143BA /* Cultiz reader */,
+				2708E8841930FC3B00D143BA /* Cultiz readerTests */,
+				2708E85B1930FC3200D143BA /* Frameworks */,
+				2708E85A1930FC3200D143BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2708E85A1930FC3200D143BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2708E8591930FC3200D143BA /* Cultiz reader.app */,
+				2708E87D1930FC3B00D143BA /* Cultiz readerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2708E85B1930FC3200D143BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2708E85C1930FC3200D143BA /* Foundation.framework */,
+				2708E85E1930FC3200D143BA /* CoreGraphics.framework */,
+				2708E8601930FC3200D143BA /* UIKit.framework */,
+				2708E87E1930FC3B00D143BA /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2708E8621930FC3300D143BA /* Cultiz reader */ = {
+			isa = PBXGroup;
+			children = (
+				2708E86B1930FC3600D143BA /* CTZAppDelegate.h */,
+				2708E86C1930FC3700D143BA /* CTZAppDelegate.m */,
+				2708E86E1930FC3900D143BA /* Main.storyboard */,
+				2708E8711930FC3900D143BA /* CTZMasterViewController.h */,
+				2708E8721930FC3900D143BA /* CTZMasterViewController.m */,
+				2708E8741930FC3900D143BA /* CTZDetailViewController.h */,
+				2708E8751930FC3900D143BA /* CTZDetailViewController.m */,
+				2708E8771930FC3A00D143BA /* Images.xcassets */,
+				2708E8631930FC3400D143BA /* Supporting Files */,
+			);
+			path = "Cultiz reader";
+			sourceTree = "<group>";
+		};
+		2708E8631930FC3400D143BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2708E8641930FC3400D143BA /* Cultiz reader-Info.plist */,
+				2708E8651930FC3500D143BA /* InfoPlist.strings */,
+				2708E8681930FC3500D143BA /* main.m */,
+				2708E86A1930FC3600D143BA /* Cultiz reader-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2708E8841930FC3B00D143BA /* Cultiz readerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2708E88A1930FC3C00D143BA /* Cultiz_readerTests.m */,
+				2708E8851930FC3C00D143BA /* Supporting Files */,
+			);
+			path = "Cultiz readerTests";
+			sourceTree = "<group>";
+		};
+		2708E8851930FC3C00D143BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2708E8861930FC3C00D143BA /* Cultiz readerTests-Info.plist */,
+				2708E8871930FC3C00D143BA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2708E8581930FC3100D143BA /* Cultiz reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2708E88E1930FC3D00D143BA /* Build configuration list for PBXNativeTarget "Cultiz reader" */;
+			buildPhases = (
+				2708E8551930FC3100D143BA /* Sources */,
+				2708E8561930FC3100D143BA /* Frameworks */,
+				2708E8571930FC3100D143BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cultiz reader";
+			productName = "Cultiz reader";
+			productReference = 2708E8591930FC3200D143BA /* Cultiz reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2708E87C1930FC3B00D143BA /* Cultiz readerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2708E8911930FC3D00D143BA /* Build configuration list for PBXNativeTarget "Cultiz readerTests" */;
+			buildPhases = (
+				2708E8791930FC3B00D143BA /* Sources */,
+				2708E87A1930FC3B00D143BA /* Frameworks */,
+				2708E87B1930FC3B00D143BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2708E8831930FC3B00D143BA /* PBXTargetDependency */,
+			);
+			name = "Cultiz readerTests";
+			productName = "Cultiz readerTests";
+			productReference = 2708E87D1930FC3B00D143BA /* Cultiz readerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2708E8511930FC2D00D143BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CTZ;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Cultiz;
+				TargetAttributes = {
+					2708E87C1930FC3B00D143BA = {
+						TestTargetID = 2708E8581930FC3100D143BA;
+					};
+				};
+			};
+			buildConfigurationList = 2708E8541930FC2F00D143BA /* Build configuration list for PBXProject "Cultiz reader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2708E8501930FC2A00D143BA;
+			productRefGroup = 2708E85A1930FC3200D143BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2708E8581930FC3100D143BA /* Cultiz reader */,
+				2708E87C1930FC3B00D143BA /* Cultiz readerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2708E8571930FC3100D143BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E8781930FC3A00D143BA /* Images.xcassets in Resources */,
+				2708E8671930FC3500D143BA /* InfoPlist.strings in Resources */,
+				2708E8701930FC3900D143BA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2708E87B1930FC3B00D143BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E8891930FC3C00D143BA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2708E8551930FC3100D143BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E8731930FC3900D143BA /* CTZMasterViewController.m in Sources */,
+				2708E86D1930FC3700D143BA /* CTZAppDelegate.m in Sources */,
+				2708E8691930FC3500D143BA /* main.m in Sources */,
+				2708E8761930FC3900D143BA /* CTZDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2708E8791930FC3B00D143BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2708E88B1930FC3C00D143BA /* Cultiz_readerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2708E8831930FC3B00D143BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2708E8581930FC3100D143BA /* Cultiz reader */;
+			targetProxy = 2708E8821930FC3B00D143BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2708E8651930FC3500D143BA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2708E8661930FC3500D143BA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2708E86E1930FC3900D143BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2708E86F1930FC3900D143BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2708E8871930FC3C00D143BA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2708E8881930FC3C00D143BA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2708E88C1930FC3C00D143BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2708E88D1930FC3D00D143BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2708E88F1930FC3D00D143BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cultiz reader/Cultiz reader-Prefix.pch";
+				INFOPLIST_FILE = "Cultiz reader/Cultiz reader-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2708E8901930FC3D00D143BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cultiz reader/Cultiz reader-Prefix.pch";
+				INFOPLIST_FILE = "Cultiz reader/Cultiz reader-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2708E8921930FC3D00D143BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cultiz reader.app/Cultiz reader";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cultiz reader/Cultiz reader-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Cultiz readerTests/Cultiz readerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		2708E8931930FC3D00D143BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cultiz reader.app/Cultiz reader";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cultiz reader/Cultiz reader-Prefix.pch";
+				INFOPLIST_FILE = "Cultiz readerTests/Cultiz readerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2708E8541930FC2F00D143BA /* Build configuration list for PBXProject "Cultiz reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2708E88C1930FC3C00D143BA /* Debug */,
+				2708E88D1930FC3D00D143BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2708E88E1930FC3D00D143BA /* Build configuration list for PBXNativeTarget "Cultiz reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2708E88F1930FC3D00D143BA /* Debug */,
+				2708E8901930FC3D00D143BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2708E8911930FC3D00D143BA /* Build configuration list for PBXNativeTarget "Cultiz readerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2708E8921930FC3D00D143BA /* Debug */,
+				2708E8931930FC3D00D143BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2708E8511930FC2D00D143BA /* Project object */;
+}
