@@ -7,12 +7,16 @@
 //
 
 #import "CTZMasterViewController.h"
-
 #import "CTZDetailViewController.h"
+#import "AFNetworking.h"
+#import "CTZArticle.h"
 
-@interface CTZMasterViewController () {
-    NSMutableArray *_objects;
-}
+#define COUNT 10
+
+@interface CTZMasterViewController ()
+@property (strong, nonatomic) NSArray *resultFromAPI;
+@property (strong, nonatomic) NSArray *articleList;
+@property (strong, nonatomic) NSString *apiStatus;
 @end
 
 @implementation CTZMasterViewController
@@ -26,26 +30,47 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    [self getArticleList:1];
+}
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+-(void)getArticleList:(int)page
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://cultiz.com/api/get_posts/?count=%d&page=%d", COUNT, page]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //AFNetworking asynchronous url request
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // getting API status and total page count
+        self.apiStatus = [responseObject objectForKey:@"status"];
+        //self.pageCount = [[responseObject objectForKey:@"count_total"] integerValue];
+        
+        if ([self.apiStatus  isEqual:@"ok"]) {
+            self.resultFromAPI = [responseObject objectForKey:@"posts"];
+            NSLog(@"The Array: %@",self.resultFromAPI);
+            [self.tableView reloadData];
+        } else {
+            // API status is not OK
+            NSLog(@"API status is not OK");
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+        
+    }];
+    
+    [operation start];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -57,55 +82,34 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return self.articleList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    
+    CTZArticle *article         = [[CTZArticle alloc] init];
+    [article articleBuilder:self.resultFromAPI[indexPath.row]];
+    //[self.articleList  addObject:article];
+    
+    cell.textLabel.text         = article.title;
+    cell.detailTextLabel.text   = [NSString stringWithFormat:@"par %@", [article.author valueForKey:@"name"]];
+    
+    NSArray *thumbnail_cell = [article.thumbnail_images valueForKey:@"thumbnail"];
+    NSURL *thumbnail_cell_url = [NSURL URLWithString:[thumbnail_cell valueForKey:@"url"]];
+    
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: thumbnail_cell_url];
+    cell.imageView.image = [UIImage imageWithData: imageData];
+    
     return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSDate *object = self.articleList[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }

@@ -7,12 +7,17 @@
 //
 
 #import "CTZAppDelegate.h"
+#import "Parse.h"
 
 @implementation CTZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Parse setApplicationId:@"SnabvcibsVUblDNJMF5goNi4azseKBvhLiBtvlrG"
+                  clientKey:@"QCP7ywp2zjatcWrVNlZ9iWnzMi2mJsxOjy39Mvyh"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 							
