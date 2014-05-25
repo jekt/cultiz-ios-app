@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CTZMasterViewController : UITableViewController
-
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *resultFromAPI;
+@property (strong, nonatomic) NSMutableArray *articleList;
+@property (strong, nonatomic) NSString *apiStatus;
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTZArticle.h"
 
 @interface CTZDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
-
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+- (void)getArticleFromMaster:(NSDictionary *)article;
+- (void)displayArticle:(CTZArticle *)article;
 @end

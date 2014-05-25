@@ -10,13 +10,13 @@
 
 @implementation CTZArticle
 
-- (void)articleBuilder:(NSArray *)articleList
+- (void)articleBuilder:(NSDictionary *)articleData
 {
-    for (NSString *key in articleList) {
-        NSLog(@"%@ => %@", key, [articleList valueForKey:key]);
+    for (NSString *key in articleData) {
+        //NSLog(@"%@ => %@", key, [articleData valueForKey:key]);
         if ([self respondsToSelector:NSSelectorFromString(key)]) {
-            NSLog(@"%@ => %@", key, [articleList valueForKey:key]);
-            [self setValue:[articleList valueForKey:key] forKey:key];
+            //NSLog(@"%@ => %@", key, [articleData valueForKey:key]);
+            [self setValue:[articleData valueForKey:key] forKey:key];
         }
     }
 }

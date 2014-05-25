@@ -14,10 +14,6 @@
 #define COUNT 10
 
 @interface CTZMasterViewController ()
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *resultFromAPI;
-@property (strong, nonatomic) NSMutableArray *articleList;
-@property (strong, nonatomic) NSString *apiStatus;
 @end
 
 @implementation CTZMasterViewController
@@ -31,8 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    /*self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:45/255 green:60/255 blue:122/255 alpha:1];
-    self.navigationController.navigationBar.translucent = NO;*/
     [self getArticleList:1];
 }
 
@@ -95,8 +89,8 @@
     CTZArticle *article         = [[CTZArticle alloc] init];
     NSLog(@"self.resultFromAPI[indexPath.row]: %@",self.resultFromAPI[indexPath.row]);
     [article articleBuilder:self.resultFromAPI[indexPath.row]];
-    [self.articleList addObject:article];
-    NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
+    //[self.articleList addObject:article];
+    //NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
     
     cell.textLabel.text         = article.title;
     cell.detailTextLabel.text   = [NSString stringWithFormat:@"par %@", [article.author valueForKey:@"name"]];
@@ -114,7 +108,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] setDetailItem:self.articleList[indexPath.row]];
+        [[segue destinationViewController] getArticleFromMaster:self.resultFromAPI[indexPath.row]];
     }
 }
 
