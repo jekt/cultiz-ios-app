@@ -14,8 +14,9 @@
 #define COUNT 10
 
 @interface CTZMasterViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *resultFromAPI;
-@property (strong, nonatomic) NSArray *articleList;
+@property (strong, nonatomic) NSMutableArray *articleList;
 @property (strong, nonatomic) NSString *apiStatus;
 @end
 
@@ -30,6 +31,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    /*self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:45/255 green:60/255 blue:122/255 alpha:1];
+    self.navigationController.navigationBar.translucent = NO;*/
     [self getArticleList:1];
 }
 
@@ -50,7 +53,7 @@
         
         if ([self.apiStatus  isEqual:@"ok"]) {
             self.resultFromAPI = [responseObject objectForKey:@"posts"];
-            NSLog(@"The Array: %@",self.resultFromAPI);
+            NSLog(@"ArticleList received from API");
             [self.tableView reloadData];
         } else {
             // API status is not OK
@@ -82,7 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.articleList.count;
+    return self.resultFromAPI.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,8 +93,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     CTZArticle *article         = [[CTZArticle alloc] init];
+    NSLog(@"self.resultFromAPI[indexPath.row]: %@",self.resultFromAPI[indexPath.row]);
     [article articleBuilder:self.resultFromAPI[indexPath.row]];
-    //[self.articleList  addObject:article];
+    [self.articleList addObject:article];
+    NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
     
     cell.textLabel.text         = article.title;
     cell.detailTextLabel.text   = [NSString stringWithFormat:@"par %@", [article.author valueForKey:@"name"]];
@@ -109,8 +114,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.articleList[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setDetailItem:self.articleList[indexPath.row]];
     }
 }
 

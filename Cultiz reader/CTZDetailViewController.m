@@ -7,6 +7,7 @@
 //
 
 #import "CTZDetailViewController.h"
+#import "CTZArticle.h"
 
 @interface CTZDetailViewController ()
 - (void)configureView;

@@ -14,6 +14,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:(45.0/255.0) green:(60.0/255.0) blue:(122.0/255.0) alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [Parse setApplicationId:@"SnabvcibsVUblDNJMF5goNi4azseKBvhLiBtvlrG"
                   clientKey:@"QCP7ywp2zjatcWrVNlZ9iWnzMi2mJsxOjy39Mvyh"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
