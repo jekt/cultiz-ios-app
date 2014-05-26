@@ -26,7 +26,7 @@
     //[self.articleList addObject:article];
     //NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
     // Update the view.
-    [self displayArticle];
+    //[self displayArticle];
 }
 
 - (void)displayArticle
@@ -36,11 +36,13 @@
     if (self.article) { // user comes from the menu (MasterView)
         NSLog(@"%@",self.article);
         // set coverImage
+        NSLog(@"%@",self.article.thumbnail_images);
         NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
-        NSURL *thumbnail_url        = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
-        NSData *imageData           = [[NSData alloc] initWithContentsOfURL: thumbnail_url];
+        NSURL   *thumbnail_url      = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
+        NSData  *imageData          = [[NSData alloc] initWithContentsOfURL: thumbnail_url];
         UIImage *image              = [UIImage imageWithData: imageData];
         self.coverImage.image       = image;
+        NSLog(@"coverImage: %@ | image: %@",self.coverImage,image);
         
         // set titleLabel
         NSLog(@"%@",self.article.title);
@@ -48,12 +50,33 @@
         self.titleLabel.text            = self.article.title;
         [self.titleLabel sizeToFit];
         // and view title
-        self.navBar.title = self.article.title;
+        self.navBar.title               = self.article.title;
         
         // set authorLabel
+        NSLog(@"%@",self.article.author);
         self.authorLabel.numberOfLines  = 0;
-        self.authorLabel.text           = [NSString stringWithFormat:@"par %@", self.article.author];
+        self.authorLabel.text           = [NSString stringWithFormat:@"par %@", [self.article.author valueForKey:@"name"]];
         [self.titleLabel sizeToFit];
+        
+        // set contentWebView
+        //NSLog(@"%@",self.article.content);
+        NSString *htmlContent = [NSString stringWithFormat:@"<html> \n"
+                                 "<head> \n"
+                                 "<style type=\"text/css\"> \n"
+                                 "body { \n"
+                                 "font-family:Georgia; \n"
+                                 "font-size:14px; \n"
+                                 "line-height:20px; \n"
+                                 "}\n"	
+                                 "</style> \n"
+                                 "</head> \n"
+                                 "<body>%@</body> \n"
+                                 "</html>", self.article.content];
+        [self.contentWebView loadHTMLString:htmlContent baseURL:nil];
+        //[[self.contentWebView preferences] setDefaultFontSize:12];
+        //[[self.contentWebView preferences] setStandardFontFamily:@"Verdana"];
+        [self.contentWebView ];
+        [self.contentWebView sizeToFit];
     } else {
         NSLog(@"Something went wrong, _article is null");
     }
@@ -63,7 +86,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    //[self displayArticle];
+    [self displayArticle];
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,12 +10,13 @@
 #import "CTZArticle.h"
 
 @interface CTZDetailViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIImageView *coverImage;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *authorLabel;
-@property (strong, nonatomic) IBOutlet UIWebView *contentWebView;
-@property (strong, nonatomic) IBOutlet UINavigationItem *navBar;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *coverImage;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 
 @property (strong, nonatomic) CTZArticle *article;
 
