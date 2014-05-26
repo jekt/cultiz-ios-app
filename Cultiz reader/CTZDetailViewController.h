@@ -10,7 +10,15 @@
 #import "CTZArticle.h"
 
 @interface CTZDetailViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *coverImage;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *authorLabel;
+@property (strong, nonatomic) IBOutlet UIWebView *contentWebView;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navBar;
 
-- (void)getArticleFromMaster:(NSDictionary *)article;
-- (void)displayArticle:(CTZArticle *)article;
+@property (strong, nonatomic) CTZArticle *article;
+
+- (void)getArticleFromMaster:(CTZArticle *)article;
+- (void)displayArticle;
 @end

@@ -20,6 +20,6 @@
 @property (strong, nonatomic) NSArray  *thumbnail_images;
 @property (strong, nonatomic) NSString *prev_article_id;
 
-- (void)articleBuilder:(NSDictionary *)articleData;
+//+ (void)articleBuilder:(NSDictionary *)articleData;
 
 @end

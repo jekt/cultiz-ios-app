@@ -10,55 +10,49 @@
 #import "CTZArticle.h"
 
 @interface CTZDetailViewController ()
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIImageView *coverImage;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *authorLabel;
-@property (strong, nonatomic) IBOutlet UIWebView *contentWebView;
-@property (strong, nonatomic) IBOutlet UINavigationItem *navBar;
 @end
 
 @implementation CTZDetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)getArticleFromMaster:(NSDictionary *)article
+- (void)getArticleFromMaster:(CTZArticle *)article
 {
-    //self._article = article;
-    //NSLog(@"%@", self._article);
-    CTZArticle *tempArticle         = [[CTZArticle alloc] init];
+    self.article = article;
+    NSLog(@"%@", article);
+    //CTZArticle *tempArticle         = [[CTZArticle alloc] init];
     //NSLog(@"self.resultFromAPI[indexPath.row]: %@",self.resultFromAPI[indexPath.row]);
-    [tempArticle articleBuilder:article];
+    //[tempArticle articleBuilder:article];
     //[self.articleList addObject:article];
     //NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
     // Update the view.
-    [self displayArticle:tempArticle];
+    [self displayArticle];
 }
 
-- (void)displayArticle:(CTZArticle *)article
+- (void)displayArticle
 {
     // Update the user interface for the detail item.
 
-    if (article) { // user comes from the menu (MasterView)
-        NSLog(@"%@",article);
+    if (self.article) { // user comes from the menu (MasterView)
+        NSLog(@"%@",self.article);
         // set coverImage
-        NSArray *thumbnail          = [article.thumbnail_images valueForKey:@"post"];
+        NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
         NSURL *thumbnail_url        = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
         NSData *imageData           = [[NSData alloc] initWithContentsOfURL: thumbnail_url];
         UIImage *image              = [UIImage imageWithData: imageData];
         self.coverImage.image       = image;
         
         // set titleLabel
-        NSLog(@"%@",article.title);
+        NSLog(@"%@",self.article.title);
         self.titleLabel.numberOfLines   = 0;
-        self.titleLabel.text            = article.title;
+        self.titleLabel.text            = self.article.title;
         [self.titleLabel sizeToFit];
         // and view title
-        self.navBar.title = article.title;
+        self.navBar.title = self.article.title;
         
         // set authorLabel
         self.authorLabel.numberOfLines  = 0;
-        self.authorLabel.text           = [NSString stringWithFormat:@"par %@", article.author];
+        self.authorLabel.text           = [NSString stringWithFormat:@"par %@", self.article.author];
         [self.titleLabel sizeToFit];
     } else {
         NSLog(@"Something went wrong, _article is null");

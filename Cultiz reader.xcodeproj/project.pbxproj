@@ -23,6 +23,7 @@
 		2708E8891930FC3C00D143BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2708E8871930FC3C00D143BA /* InfoPlist.strings */; };
 		2708E88B1930FC3C00D143BA /* Cultiz_readerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E88A1930FC3C00D143BA /* Cultiz_readerTests.m */; };
 		2708E8961931320D00D143BA /* CTZArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2708E8951931320D00D143BA /* CTZArticle.m */; };
+		277105761933C94800023853 /* CTZArticleBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 277105751933C94800023853 /* CTZArticleBuilder.m */; };
 		87CE5CC8819D400BB62CA3B5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B7A14D7E1742F58BCA30EC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		2708E88A1930FC3C00D143BA /* Cultiz_readerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cultiz_readerTests.m; sourceTree = "<group>"; };
 		2708E8941931320D00D143BA /* CTZArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTZArticle.h; sourceTree = "<group>"; };
 		2708E8951931320D00D143BA /* CTZArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTZArticle.m; sourceTree = "<group>"; };
+		277105741933C94800023853 /* CTZArticleBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTZArticleBuilder.h; sourceTree = "<group>"; };
+		277105751933C94800023853 /* CTZArticleBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTZArticleBuilder.m; sourceTree = "<group>"; };
 		A85CF691A0EC470384197B54 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D0B7A14D7E1742F58BCA30EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +138,8 @@
 				2708E8631930FC3400D143BA /* Supporting Files */,
 				2708E8941931320D00D143BA /* CTZArticle.h */,
 				2708E8951931320D00D143BA /* CTZArticle.m */,
+				277105741933C94800023853 /* CTZArticleBuilder.h */,
+				277105751933C94800023853 /* CTZArticleBuilder.m */,
 			);
 			path = "Cultiz reader";
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			files = (
 				2708E8731930FC3900D143BA /* CTZMasterViewController.m in Sources */,
 				2708E8961931320D00D143BA /* CTZArticle.m in Sources */,
+				277105761933C94800023853 /* CTZArticleBuilder.m in Sources */,
 				2708E86D1930FC3700D143BA /* CTZAppDelegate.m in Sources */,
 				2708E8691930FC3500D143BA /* main.m in Sources */,
 				2708E8761930FC3900D143BA /* CTZDetailViewController.m in Sources */,

@@ -10,6 +10,7 @@
 #import "CTZDetailViewController.h"
 #import "AFNetworking.h"
 #import "CTZArticle.h"
+#import "CTZArticleBuilder.h"
 
 #define COUNT 10
 
@@ -46,8 +47,9 @@
         //self.pageCount = [[responseObject objectForKey:@"count_total"] integerValue];
         
         if ([self.apiStatus  isEqual:@"ok"]) {
-            self.resultFromAPI = [responseObject objectForKey:@"posts"];
+            //self.resultFromAPI = [responseObject objectForKey:@"posts"];
             NSLog(@"ArticleList received from API");
+            self.articleList = [CTZArticleBuilder articleListFromJSON:[responseObject objectForKey:@"posts"]];
             [self.tableView reloadData];
         } else {
             // API status is not OK
@@ -79,16 +81,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.resultFromAPI.count;
+    return self.articleList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    CTZArticle *article         = [[CTZArticle alloc] init];
-    NSLog(@"self.resultFromAPI[indexPath.row]: %@",self.resultFromAPI[indexPath.row]);
-    [article articleBuilder:self.resultFromAPI[indexPath.row]];
+    CTZArticle *article         = self.articleList[indexPath.row];
+    NSLog(@"articleList[indexPath.row]: %@",self.articleList[indexPath.row]);
+    //[article articleBuilder:self.resultFromAPI[indexPath.row]];
     //[self.articleList addObject:article];
     //NSLog(@"article: %@",self.resultFromAPI[indexPath.row]);
     
@@ -108,7 +110,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] getArticleFromMaster:self.resultFromAPI[indexPath.row]];
+        [[segue destinationViewController] getArticleFromMaster:self.articleList[indexPath.row]];
     }
 }
 
