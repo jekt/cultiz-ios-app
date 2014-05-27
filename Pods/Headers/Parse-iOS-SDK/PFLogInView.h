@@ -1,1 +1,1 @@
-../../Parse-iOS-SDK/Parse.framework/Versions/1.2.19/Headers/PFLogInView.h
+../../Parse-iOS-SDK/Parse.framework/Versions/Current/Headers/PFLogInView.h

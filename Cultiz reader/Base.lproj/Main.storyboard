@@ -91,74 +91,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kyr-LP-gVZ">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                            <webView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2w-vO-0wt">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0j-82-MXc">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="N4T-Uv-h0C"/>
-                                            <constraint firstAttribute="height" constant="150" id="zkG-iD-asY"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="fUd-lY-pxz">
-                                        <rect key="frame" x="10" y="158" width="300" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="eUC-sK-4mN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="4Ee-rO-CZm">
-                                        <rect key="frame" x="10" y="186" width="300" height="14"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="CVC-t7-kJI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" allowsInlineMediaPlayback="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhG-T2-Mou">
-                                        <rect key="frame" x="0.0" y="210" width="320" height="176"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="FxU-Dp-UUK"/>
-                                        </constraints>
-                                    </webView>
-                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="4Ee-rO-CZm" firstAttribute="top" secondItem="fUd-lY-pxz" secondAttribute="bottom" constant="3" id="95Q-P0-wLY"/>
-                                    <constraint firstItem="o0j-82-MXc" firstAttribute="top" secondItem="Kyr-LP-gVZ" secondAttribute="top" id="PFj-S9-BQ2"/>
-                                    <constraint firstItem="fUd-lY-pxz" firstAttribute="top" secondItem="o0j-82-MXc" secondAttribute="bottom" constant="8" id="Raw-G3-kRH"/>
-                                    <constraint firstItem="nhG-T2-Mou" firstAttribute="top" secondItem="4Ee-rO-CZm" secondAttribute="bottom" constant="10" id="fJY-8v-9Sv"/>
+                                    <constraint firstAttribute="width" constant="320" id="4dg-w1-xo7"/>
                                 </constraints>
-                            </scrollView>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="a0L-h9-sNL" firstAttribute="top" secondItem="Kyr-LP-gVZ" secondAttribute="bottom" id="E6q-6F-1y4"/>
-                            <constraint firstItem="Kyr-LP-gVZ" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="Owp-j9-I8h"/>
-                            <constraint firstItem="Kyr-LP-gVZ" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="top" id="UDX-ba-dbg"/>
-                            <constraint firstAttribute="trailing" secondItem="Kyr-LP-gVZ" secondAttribute="trailing" id="uwO-40-A4n"/>
+                            <constraint firstItem="y2w-vO-0wt" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="top" id="0is-L8-ELH"/>
+                            <constraint firstItem="a0L-h9-sNL" firstAttribute="top" secondItem="y2w-vO-0wt" secondAttribute="bottom" id="vZP-IV-Yzu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN">
                         <barButtonItem key="backBarButtonItem" title="Retour" id="PUe-ZY-5qv"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="authorLabel" destination="4Ee-rO-CZm" id="h43-8H-Nfl"/>
-                        <outlet property="contentWebView" destination="nhG-T2-Mou" id="ON8-ab-nr7"/>
-                        <outlet property="coverImage" destination="o0j-82-MXc" id="d6D-SF-q1d"/>
+                        <outlet property="contentWebView" destination="y2w-vO-0wt" id="UXC-6E-1fN"/>
                         <outlet property="navBar" destination="cra-N8-TIN" id="V6b-PN-DOv"/>
-                        <outlet property="scrollView" destination="Kyr-LP-gVZ" id="Gvm-0F-0XZ"/>
-                        <outlet property="titleLabel" destination="fUd-lY-pxz" id="1kh-Le-7Xr"/>
-                        <outletCollection property="scrollView" destination="Kyr-LP-gVZ" id="D6M-MZ-FEC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
