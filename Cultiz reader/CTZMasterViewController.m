@@ -99,7 +99,6 @@
     
     NSArray *thumbnail_cell = [article.thumbnail_images valueForKey:@"thumbnail"];
     NSURL *thumbnail_cell_url = [NSURL URLWithString:[thumbnail_cell valueForKey:@"url"]];
-    
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: thumbnail_cell_url];
     cell.imageView.image = [UIImage imageWithData: imageData];
     

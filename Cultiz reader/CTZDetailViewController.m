@@ -8,6 +8,8 @@
 
 #import "CTZDetailViewController.h"
 #import "CTZArticle.h"
+#import "FBDialogs.h"
+#import "FBWebDialogs.h"
 
 @interface CTZDetailViewController ()
 @end
@@ -15,6 +17,24 @@
 @implementation CTZDetailViewController
 
 #pragma mark - Managing the detail item
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                    target:self
+                                    action:@selector(shareActionSheet)];
+    self.navigationItem.rightBarButtonItem = shareButton;
+    [self displayArticle];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)getArticleFromMaster:(CTZArticle *)article
 {
@@ -39,24 +59,10 @@
         NSLog(@"%@",self.article.thumbnail_images);
         NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
         NSURL   *thumbnail_url      = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
-        /*NSData  *imageData          = [[NSData alloc] initWithContentsOfURL: thumbnail_url];
-        UIImage *image              = [UIImage imageWithData: imageData];
-        self.coverImage.image       = image;
-        NSLog(@"coverImage: %@ | image: %@",self.coverImage,image);*/
         
-        // set titleLabel
-        /*NSLog(@"%@",self.article.title);
-        self.titleLabel.numberOfLines   = 0;
-        self.titleLabel.text            = self.article.title;
-        [self.titleLabel sizeToFit];*/
-        // and view title
-        self.navBar.title               = self.article.title;
+        self.navBar.title           = self.article.title;
         
-        // set authorLabel
-        NSLog(@"%@",self.article.author);
-        self.authorLabel.numberOfLines  = 0;
-        //self.authorLabel.text           = [NSString stringWithFormat:@"par %@", [self.article.author valueForKey:@"name"]];
-        NSString *author           = [NSString stringWithFormat:@"par %@", [self.article.author valueForKey:@"name"]];
+        self.article.author         = [NSString stringWithFormat:@"par %@", [self.article.author valueForKey:@"name"]];
         //[self.titleLabel sizeToFit];
         
         // set contentWebView
@@ -94,7 +100,7 @@
                                  "</html>",
                                  thumbnail_url,
                                  self.article.title,
-                                 author,
+                                 self.article.author,
                                  self.article.content];
         [self.contentWebView loadHTMLString:htmlContent baseURL:nil];
         [self.contentWebView.scrollView setContentSize: CGSizeMake(self.contentWebView.frame.size.width, self.contentWebView.scrollView.contentSize.height)];
@@ -113,17 +119,153 @@
     }
 }
 
-- (void)viewDidLoad
+# pragma mark - Sharing actions
+
+-(void)shareActionSheet
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self displayArticle];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Annuler"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:  @"Publier sur Facebook",
+                                                                        @"Envoyer par message",
+                                                                        @"Commenter",
+                                                                        @"Autres options...",
+                                                                        nil];
+    
+    [actionSheet showInView:self.view];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"The %d button was tapped: %@", buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
+    switch (buttonIndex) {
+        case 0: // "Publier sur Facebook"
+            [self fbShareDialog];
+            break;
+            
+        case 1: // "Envoyer par message"
+            
+            break;
+            
+        case 2:  // "Commenter"
+            
+            break;
+            
+        case 3: // "Autres options..."
+            [self iOSDefaultSharing];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)fbShareDialog
+{
+    // Check if the Facebook app is installed and we can present the share dialog
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    params.link = [NSURL URLWithString:self.article.url];
+    NSLog(@"%@",params.link);
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        // Present the share dialog
+        NSLog(@"Share Dialog");
+        [FBDialogs presentShareDialogWithLink:params.link
+                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                          if(error) {
+                                              // An error occurred, we need to handle the error
+                                              // See: https://developers.facebook.com/docs/ios/errors
+                                              NSLog(@"Error publishing story: %@", error.description);
+                                          } else {
+                                              // Success
+                                              NSLog(@"result %@", results);
+                                          }
+                                      }];
+    } else {
+        // Present the feed dialog
+        NSLog(@"Feed Dialog");
+        // Put together the dialog parameters
+        NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
+        NSURL   *thumbnail_url      = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
+        
+        NSLog(@"1");
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       self.article.title,      @"name",
+                                       self.article.author,     @"caption",
+                                       self.article.excerpt,    @"description",
+                                       self.article.url,        @"link",
+                                       thumbnail_url,           @"picture",
+                                       nil];
+        
+        NSLog(@"2");
+        
+        // Show the feed dialog
+        [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                               parameters:params
+                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                      if (error) {
+                                                          // An error occurred, we need to handle the error
+                                                          // See: https://developers.facebook.com/docs/ios/errors
+                                                          NSLog(@"Error publishing story: %@", error.description);
+                                                      } else {
+                                                          if (result == FBWebDialogResultDialogNotCompleted) {
+                                                              // User cancelled.
+                                                              NSLog(@"User cancelled.");
+                                                          } else {
+                                                              // Handle the publish feed callback
+                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                              
+                                                              if (![urlParams valueForKey:@"post_id"]) {
+                                                                  // User cancelled.
+                                                                  NSLog(@"User cancelled.");
+                                                                  
+                                                              } else {
+                                                                  // User clicked the Share button
+                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                  NSLog(@"result %@", result);
+                                                              }
+                                                          }
+                                                      }
+                                                  }];
+    }
+}
+
+// A function for parsing URL parameters returned by the Feed Dialog.
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      NSLog(@"Unhandled deep link: %@", url);
+                                      // Here goes the code to handle the links
+                                      // Use the links to show a relevant view of your app to the user
+                                  }];
+    
+    return urlWasHandled;
+}
+
+- (void)iOSDefaultSharing
+{
+    NSString *textToShare = [NSString stringWithFormat:@"Matte cet article : %@ (%@) sur Cultiz > %@", self.article.title, self.article.author, self.article.url];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObject:textToShare] applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 @end

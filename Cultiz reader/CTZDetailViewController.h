@@ -9,12 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CTZArticle.h"
 
-@interface CTZDetailViewController : UIViewController
+@interface CTZDetailViewController : UIViewController <UIActionSheetDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *coverImage;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 
