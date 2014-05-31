@@ -107,23 +107,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     CTZArticle *article         = self.articleList[indexPath.row];
-    NSLog(@"articleList[indexPath.row]: %@",self.articleList[indexPath.row]);
     
-    NSAttributedString *plainTitle = [[NSAttributedString alloc]
-                                      initWithData:[article.title dataUsingEncoding:NSUTF8StringEncoding]
-                                      options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                NSCharacterEncodingDocumentAttribute:
-                                                    [NSNumber numberWithInt:NSUTF8StringEncoding]
-                                                }
-                                      documentAttributes:nil
-                                      error:nil];
-    cell.textLabel.text         = [NSString stringWithFormat:@"%@", plainTitle.string];
-    NSLog(@"%@", cell.textLabel.text);
-    cell.detailTextLabel.text   = [NSString stringWithFormat:@"par %@", [article.author valueForKey:@"name"]];
+    cell.textLabel.text         = article.title;
+    cell.detailTextLabel.text   = article.author;
     
-    NSArray *thumbnail_cell     = [article.thumbnail_images valueForKey:@"thumbnail"];
-    NSURL *thumbnail_cell_url   = [NSURL URLWithString:[thumbnail_cell valueForKey:@"url"]];
-    NSData *imageData           = [[NSData alloc] initWithContentsOfURL: thumbnail_cell_url];
+    NSData *imageData           = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:article.thumbnail_small]];
     cell.imageView.image        = [UIImage imageWithData: imageData];
     
     if (indexPath.row == (self.articleList.count-1)) {

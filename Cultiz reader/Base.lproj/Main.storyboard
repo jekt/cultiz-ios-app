@@ -111,9 +111,7 @@
                             <constraint firstItem="y2w-vO-0wt" firstAttribute="top" secondItem="MMQ-IT-qOo" secondAttribute="top" id="pVa-Fk-EOe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN">
-                        <barButtonItem key="backBarButtonItem" title="Retour" id="PUe-ZY-5qv"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
                         <outlet property="contentWebView" destination="y2w-vO-0wt" id="UXC-6E-1fN"/>
                         <outlet property="navBar" destination="cra-N8-TIN" id="V6b-PN-DOv"/>

@@ -14,7 +14,6 @@
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
-@property (strong, nonatomic) NSString *excerpt;
 @property (strong, nonatomic) NSArray  *categories;
 @property (strong, nonatomic) NSArray  *tags;
 @property (strong, nonatomic) NSString *author;

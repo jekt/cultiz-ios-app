@@ -54,16 +54,7 @@
 
     if (self.article) { // user comes from the menu (MasterView)
         NSLog(@"%@",self.article);
-        // set coverImage
-        NSLog(@"%@",self.article.thumbnail_images);
-        NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
-        NSString *thumbnail_url     = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
-        self.article.thumbnail_big  = thumbnail_url;
-        
         self.navBar.title           = self.article.title;
-        
-        self.article.author         = [NSString stringWithFormat:@"par %@", [self.article.author valueForKey:@"name"]];
-        //[self.titleLabel sizeToFit];
         
         // set contentWebView
         //NSLog(@"%@",self.article.content);
