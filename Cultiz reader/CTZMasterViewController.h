@@ -10,7 +10,11 @@
 
 @interface CTZMasterViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingAnimation;
 @property (strong, nonatomic) NSData *resultFromAPI;
 @property (strong, nonatomic) NSArray *articleList;
 @property (strong, nonatomic) NSString *apiStatus;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) int pageCount;
+@property (nonatomic) int currentPage;
 @end

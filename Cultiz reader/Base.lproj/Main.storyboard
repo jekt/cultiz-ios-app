@@ -34,6 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="vvO-px-7K3">
+                            <rect key="frame" x="0.0" y="161" width="320" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="color" red="0.1764705882" green="0.23529411759999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" detailTextLabel="Po2-6y-aNi" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="m0d-ak-lc9">
                                 <rect key="frame" x="0.0" y="86" width="320" height="75"/>
@@ -72,6 +77,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Derniers articles" id="tQt-TN-PWz"/>
                     <connections>
+                        <outlet property="loadingAnimation" destination="vvO-px-7K3" id="whi-eV-kxg"/>
                         <outlet property="tableView" destination="mLL-gJ-YKr" id="HjE-Lj-cGN"/>
                     </connections>
                 </tableViewController>
@@ -91,19 +97,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2w-vO-0wt">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2w-vO-0wt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="4dg-w1-xo7"/>
-                                </constraints>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="y2w-vO-0wt" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="top" id="0is-L8-ELH"/>
-                            <constraint firstItem="a0L-h9-sNL" firstAttribute="top" secondItem="y2w-vO-0wt" secondAttribute="bottom" id="vZP-IV-Yzu"/>
+                            <constraint firstItem="y2w-vO-0wt" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="chi-3e-xTh"/>
+                            <constraint firstItem="a0L-h9-sNL" firstAttribute="top" secondItem="y2w-vO-0wt" secondAttribute="bottom" id="dol-nE-uBc"/>
+                            <constraint firstAttribute="trailing" secondItem="y2w-vO-0wt" secondAttribute="trailing" id="fU9-tS-IlW"/>
+                            <constraint firstItem="y2w-vO-0wt" firstAttribute="top" secondItem="MMQ-IT-qOo" secondAttribute="top" id="pVa-Fk-EOe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN">
