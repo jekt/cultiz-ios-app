@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CTZArticle.h"
 
-@interface CTZDetailViewController : UIViewController <UIActionSheetDelegate>
+@interface CTZDetailViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;

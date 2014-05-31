@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSArray  *tags;
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSArray  *thumbnail_images;
+@property (strong, nonatomic) NSString *thumbnail_small;
+@property (strong, nonatomic) NSString *thumbnail_big;
 @property (strong, nonatomic) NSString *prev_article_id;
 
 //+ (void)articleBuilder:(NSDictionary *)articleData;

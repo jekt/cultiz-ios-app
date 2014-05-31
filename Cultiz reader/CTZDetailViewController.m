@@ -8,8 +8,7 @@
 
 #import "CTZDetailViewController.h"
 #import "CTZArticle.h"
-#import "FBDialogs.h"
-#import "FBWebDialogs.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface CTZDetailViewController ()
 @end
@@ -58,7 +57,8 @@
         // set coverImage
         NSLog(@"%@",self.article.thumbnail_images);
         NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
-        NSURL   *thumbnail_url      = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
+        NSString *thumbnail_url     = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
+        self.article.thumbnail_big  = thumbnail_url;
         
         self.navBar.title           = self.article.title;
         
@@ -98,7 +98,7 @@
                                  "<div id=\"content\">%@</div> \n"
                                  "</body> \n"
                                  "</html>",
-                                 thumbnail_url,
+                                 self.article.thumbnail_big,
                                  self.article.title,
                                  self.article.author,
                                  self.article.content];
@@ -127,11 +127,10 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Annuler"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:  @"Publier sur Facebook",
-                                                                        @"Envoyer par message",
-                                                                        @"Commenter",
-                                                                        @"Autres options...",
-                                                                        nil];
+                                                    otherButtonTitles:@"Publier sur Facebook",
+                                                                      @"Envoyer par message",
+                                                                      @"Autres options...",
+                                                                      nil];
     
     [actionSheet showInView:self.view];
 }
@@ -145,14 +144,14 @@
             break;
             
         case 1: // "Envoyer par message"
-            
+            [self fbMessengerDialog];
             break;
             
-        case 2:  // "Commenter"
+        /*case 2:  // "Commenter"
             
-            break;
+            break;*/
             
-        case 3: // "Autres options..."
+        case 2: // "Autres options..."
             [self iOSDefaultSharing];
             break;
             
@@ -184,51 +183,55 @@
                                           }
                                       }];
     } else {
-        // Present the feed dialog
-        NSLog(@"Feed Dialog");
-        // Put together the dialog parameters
-        NSArray *thumbnail          = [self.article.thumbnail_images valueForKey:@"post"];
-        NSURL   *thumbnail_url      = [NSURL URLWithString:[thumbnail valueForKey:@"url"]];
+        // Facebook App is not installed, prompt what to do next
+        NSString *msg        = @"Tu n'as pas installé l'app Facebook. Veux-tu voir les autres options de partage à la place ?";
+        [self sharingAppNotInstalled:msg];
         
-        NSLog(@"1");
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       self.article.title,      @"name",
-                                       self.article.author,     @"caption",
-                                       self.article.excerpt,    @"description",
-                                       self.article.url,        @"link",
-                                       thumbnail_url,           @"picture",
-                                       nil];
-        
-        NSLog(@"2");
-        
-        // Show the feed dialog
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil
-                                               parameters:params
-                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-                                                      if (error) {
-                                                          // An error occurred, we need to handle the error
-                                                          // See: https://developers.facebook.com/docs/ios/errors
-                                                          NSLog(@"Error publishing story: %@", error.description);
-                                                      } else {
-                                                          if (result == FBWebDialogResultDialogNotCompleted) {
-                                                              // User cancelled.
-                                                              NSLog(@"User cancelled.");
-                                                          } else {
-                                                              // Handle the publish feed callback
-                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                                                              
-                                                              if (![urlParams valueForKey:@"post_id"]) {
-                                                                  // User cancelled.
-                                                                  NSLog(@"User cancelled.");
-                                                                  
-                                                              } else {
-                                                                  // User clicked the Share button
-                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                                                                  NSLog(@"result %@", result);
-                                                              }
-                                                          }
-                                                      }
-                                                  }];
+    }
+}
+
+- (void)fbMessengerDialog
+{
+    // Check if the Facebook app is installed and we can present
+    // the message dialog
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    /*params.link =
+    [NSURL URLWithString:self.article.url];
+    params.name = self.article.title;
+    params.caption = @"Cultiz";
+    params.picture = [NSURL URLWithString:self.article.thumbnail_big];
+    params.linkDescription = self.article.excerpt;*/
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentMessageDialogWithParams:params]) {
+        // Enable button or other UI to initiate launch of the Message Dialog
+        [FBDialogs presentMessageDialogWithLink:[NSURL URLWithString:self.article.url]
+                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                            if(error) {
+                                                // An error occurred, we need to handle the error
+                                                // See: https://developers.facebook.com/docs/ios/errors
+                                                NSLog(@"Error messaging link: %@", error.description);
+                                            } else {
+                                                // Success
+                                                NSLog(@"result %@", results);
+                                            }
+                                        }];
+    }  else {
+        // Disable button or other UI for Message Dialog
+        NSString *msg        = @"Tu n'as pas installé l'app Facebook Messenger. Veux-tu voir les autres options de partage à la place ?";
+        [self sharingAppNotInstalled:msg];
+    }
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"user pressed Annuler");
+    } else {
+        NSLog(@"user pressed Autres options");
+        [self iOSDefaultSharing];
     }
 }
 
@@ -263,9 +266,21 @@
 
 - (void)iOSDefaultSharing
 {
-    NSString *textToShare = [NSString stringWithFormat:@"Matte cet article : %@ (%@) sur Cultiz > %@", self.article.title, self.article.author, self.article.url];
+    NSString *textToShare = [NSString stringWithFormat:@"Matte cet article : %@ (%@) sur Cultiz\n%@", self.article.title, self.article.author, self.article.url];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObject:textToShare] applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:nil];
+}
+
+
+- (void)sharingAppNotInstalled:(NSString *)msg
+{
+    UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:@"Hey !"
+                                                     message:msg
+                                                    delegate:self
+                                           cancelButtonTitle:@"Annuler"
+                                           otherButtonTitles:@"Autres options...",
+                           nil];
+    [alert show];
 }
 
 @end

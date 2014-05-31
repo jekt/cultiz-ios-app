@@ -97,10 +97,10 @@
     cell.textLabel.text         = article.title;
     cell.detailTextLabel.text   = [NSString stringWithFormat:@"par %@", [article.author valueForKey:@"name"]];
     
-    NSArray *thumbnail_cell = [article.thumbnail_images valueForKey:@"thumbnail"];
-    NSURL *thumbnail_cell_url = [NSURL URLWithString:[thumbnail_cell valueForKey:@"url"]];
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: thumbnail_cell_url];
-    cell.imageView.image = [UIImage imageWithData: imageData];
+    NSArray *thumbnail_cell     = [article.thumbnail_images valueForKey:@"thumbnail"];
+    NSURL *thumbnail_cell_url   = [NSURL URLWithString:[thumbnail_cell valueForKey:@"url"]];
+    NSData *imageData           = [[NSData alloc] initWithContentsOfURL: thumbnail_cell_url];
+    cell.imageView.image        = [UIImage imageWithData: imageData];
     
     return cell;
 }
