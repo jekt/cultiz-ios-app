@@ -94,17 +94,7 @@
                                  self.article.author,
                                  self.article.content];
         [self.contentWebView loadHTMLString:htmlContent baseURL:nil];
-        [self.contentWebView.scrollView setContentSize: CGSizeMake(self.contentWebView.frame.size.width, self.contentWebView.scrollView.contentSize.height)];
-        self.contentWebView.scrollView.alwaysBounceVertical = NO;
-        self.contentWebView.scrollView.alwaysBounceHorizontal = NO;
-        //CGFloat contentHeight                   = self.contentWebView.scrollView.contentSize.height;
-        //self.contentWebView.frame = CGRectMake(self.contentWebView.frame.origin.x, self.contentWebView.frame.origin.y, self.contentWebView.frame.size.width, contentHeight);
-        
-        /*NSString *result = [self.contentWebView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight;"];
-        NSLog(@"%@",result);
-        NSLog(@"%f",self.contentWebView.scrollView.contentSize.height);
-        NSLog(@"%f",self.contentWebView.frame.size.height);*/
-        //[self.contentWebView sizeToFit];
+        self.contentWebView.
     } else {
         NSLog(@"Something went wrong");
     }
